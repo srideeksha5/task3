@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Harry Fitness</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            color: white;
+            margin: 0;
+            padding: 0;
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            position: relative;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 1.2rem;
+        }
+
+        nav a.active {
+            border-bottom: 2px solid yellow;
+        }
+
+        .navspacer {
+            flex-grow: 1;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .profile {
+            grid-column: span 2;
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .profile {
+                grid-column: span 1;
+            }
+
+            p {
+                font-size: 50px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                font-size: 1rem;
+                padding: 5px;
+            }
+
+            .card {
+                padding: 10px;
+            }
+
+            p {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="fitness.html" class="active"><ion-icon name="home"></ion-icon> Home</a>
+            <a href="about.html"><ion-icon name="information-circle-outline"></ion-icon> About Us</a>
+            <a href="services.html"><ion-icon name="fitness-outline"></ion-icon> Services</a>
+            <a href="#"><ion-icon name="heart-outline"></ion-icon> Health</a>
+            <div class="dropdown">
+                <a href="#"><ion-icon name="people-outline"></ion-icon> Community</a>
+                <div class="dropdown-content">
+                    <a href="#">Forum</a>
+                    <a href="#">Groups</a>
+                    <a href="#">Events</a>
+                </div>
+            </div>
+            <div class="navspacer"></div>
+            <a href="#"><ion-icon name="settings-outline"></ion-icon> Settings</a>
+            <a href="profile.html"><ion-icon name="person-circle-outline"></ion-icon> Profile</a>
+        </nav>
+    </header>
+    <main class="dashboard">
+        <div class="card profile" id="greeting" style="grid-area: 1/1/2/3">
+            <h2>Good Morning Champ!</h2>
+            <p>Time to seize the day</p>
+        </div>
+        <p style="text-align: center; font-style: italic; font-size: 70px">
+            WELCOME TO FITNESS<br> WEBSITE
+        </p>
+    </main>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+    <script>
+        // Dynamic greeting message based on the current time
+        function updateGreeting() {
+            const greetingElement = document.getElementById('greeting');
+            const hours = new Date().getHours();
+            let greeting = 'Good Morning Champ!';
+
+            if (hours >= 12 && hours < 18) {
+                greeting = 'Good Afternoon Champ!';
+            } else if (hours >= 18 || hours < 6) {
+                greeting = 'Good Evening Champ!';
+            }
+
+            greetingElement.querySelector('h2').textContent = greeting;
+        }
+
+        // Initialize all functionalities
+        function initialize() {
+            updateGreeting();
+        }
+
+        // Run initialize when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>
